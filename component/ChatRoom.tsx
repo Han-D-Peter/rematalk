@@ -46,7 +46,7 @@ export default function ChatRoom({
     const { data, error } = await supabase
       .from("Message")
       .insert({ name, content: message, uuid });
-    moveToLast();
+    // moveToLast();
     setMessage("");
   };
 
