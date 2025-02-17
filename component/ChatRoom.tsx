@@ -57,15 +57,18 @@ export default function ChatRoom({
   };
 
   const refreshAll = async () => {
-    const { data } = await supabase.from("Message").select<
-      "*",
-      {
-        name: string;
-        content: string;
-        createdAt: string;
-        uuid: string;
-      }
-    >();
+    const { data } = await supabase
+      .from("Message")
+      .select<
+        "*",
+        {
+          name: string;
+          content: string;
+          createdAt: string;
+          uuid: string;
+        }
+      >()
+      .order("created_at", { ascending: true });
 
     if (data) setMessages(data);
   };
