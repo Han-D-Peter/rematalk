@@ -22,6 +22,7 @@ export default function ChatRoom({
   iconNumber: number;
 }) {
   const chatBox = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState<
@@ -49,6 +50,10 @@ export default function ChatRoom({
       .from("Message")
       .insert({ name, content: message, uuid });
     moveToLast();
+    setMessage("");
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
   };
 
   const moveToLast = () => {
@@ -214,6 +219,7 @@ export default function ChatRoom({
       >
         <form onSubmit={onSubmit}>
           <TextField
+            inputRef={inputRef}
             sx={{
               padding: "0",
               width: "calc(100% - 64px)",
