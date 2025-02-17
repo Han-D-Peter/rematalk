@@ -48,6 +48,8 @@ export default function ChatRoom({
       .insert({ name, content: inputRef.current!.value, uuid });
     // moveToLast();
     inputRef.current!.value = "";
+    moveToLast();
+    inputRef.current!.focus();
   };
 
   const moveToLast = () => {
