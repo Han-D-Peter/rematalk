@@ -22,7 +22,6 @@ export default function ChatRoom({
   iconNumber: number;
 }) {
   const chatBox = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
 
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState<
@@ -49,15 +48,10 @@ export default function ChatRoom({
       .insert({ name, content: message, uuid });
     moveToLast();
     setMessage("");
-    if (inputRef.current) {
-      inputRef.current.focus({ preventScroll: true });
-    }
   };
 
   const moveToLast = () => {
-    if (chatBox.current) {
-      chatBox.current.scrollIntoView({ behavior: "smooth", inline: "end" });
-    }
+    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
   };
 
   useEffect(() => {
@@ -213,18 +207,21 @@ export default function ChatRoom({
           bottom: "0",
           width: "100%",
           background: "white",
+          height: "fit-content",
+          display: "flex",
+          alignItems: "end",
         }}
       >
         <TextField
-          inputRef={inputRef}
           sx={{
+            background: "white",
             padding: "0",
             width: "calc(100% - 64px)",
             border: "none",
           }}
+          multiline
           variant="standard"
           value={message}
-          InputProps={{ style: { padding: "0", height: "35px" } }}
           onChange={onChange}
         />
         <Button
