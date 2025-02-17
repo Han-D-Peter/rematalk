@@ -52,7 +52,7 @@ export default function ChatRoom({
     moveToLast();
     setMessage("");
     if (inputRef.current) {
-      inputRef.current.focus();
+      inputRef.current.focus({ preventScroll: true });
     }
   };
 
