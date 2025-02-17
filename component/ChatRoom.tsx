@@ -250,7 +250,7 @@ export default function ChatRoom({
         <TextField
           sx={{
             background: "white",
-            padding: "0",
+            padding: "0 0 0 10px",
             width: "calc(100% - 64px)",
             border: "none",
           }}
