@@ -21,6 +21,7 @@ export default function ChatRoom({
   uuid: string;
   iconNumber: number;
 }) {
+  const chatListRef = useRef<HTMLDivElement>(null);
   const chatBox = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -33,7 +34,7 @@ export default function ChatRoom({
     }[]
   >([]);
 
-  const [isLast, setIsLast] = useState(false);
+  const [isLast, setIsLast] = useState(true);
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     const {
@@ -68,10 +69,12 @@ export default function ChatRoom({
       ]);
 
       // Scroll to the bottom
+      console.log(isLast);
+      if (isLast) moveToLast();
     };
 
     // Listen to inserts
-    supabase
+    const channel = supabase
       .channel("Message")
       .on(
         "postgres_changes",
@@ -79,21 +82,43 @@ export default function ChatRoom({
         handleInserts
       )
       .subscribe();
-  }, []);
+
+    return () => {
+      channel.unsubscribe();
+    };
+  }, [isLast]);
+
+  //   useEffect(() => {
+  //     const lastBox = new IntersectionObserver((entries) => {
+  //       entries.forEach((entry) => {
+  //         if (entry.isIntersecting) {
+  //           setIsLast(true);
+  //         } else {
+  //           setIsLast(false);
+  //         }
+  //       });
+  //     });
+
+  //     lastBox.observe(chatBox.current!);
+  //   }, []);
 
   useEffect(() => {
-    const lastBox = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setIsLast(true);
-        } else {
-          setIsLast(false);
-        }
-      });
-    });
+    function checkLast() {
+      console.log("scroll");
+      if (
+        window.scrollY + window.innerHeight ===
+        document.documentElement.scrollHeight
+      ) {
+        console.log("last");
+      } else {
+        console.log("middle");
+      }
+    }
 
-    lastBox.observe(chatBox.current!);
-  });
+    chatListRef.current!.addEventListener("scroll", checkLast);
+
+    return chatListRef.current!.removeEventListener("scroll", checkLast);
+  }, []);
 
   return (
     <Box
@@ -102,7 +127,10 @@ export default function ChatRoom({
         overflowY: "scroll",
       }}
     >
-      <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+      <Box
+        ref={chatListRef}
+        sx={{ display: "flex", flexDirection: "column", gap: "10px" }}
+      >
         <ChatItem content={"hello"} name="peter" icon={`/icons/1.png`} />
         <ChatItem
           content={
