@@ -1,12 +1,16 @@
 "use client";
-import { supabase } from "@/app/page";
-import { RealtimeChannel } from "@supabase/supabase-js";
+
+import { createClient, RealtimeChannel } from "@supabase/supabase-js";
 import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
 import { css } from "@emotion/react";
 import ChatItem from "./ChatItem";
 import { Box, Button, IconButton, TextField } from "@mui/material";
 import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
 
+export const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
 export default function ChatRoom({
   name = "anon",
   uuid,
