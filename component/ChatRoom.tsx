@@ -220,6 +220,7 @@ export default function ChatRoom({
             border: "none",
           }}
           multiline
+          inputRef={inputRef}
           variant="standard"
           onChange={onChange}
         />
