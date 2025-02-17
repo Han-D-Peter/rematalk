@@ -24,7 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={roboto.variable}
-        style={{ background: "rgb(105, 193, 222)" }}
+        style={{ margin: "0", background: "rgb(105, 193, 222)" }}
       >
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>{children}</ThemeProvider>

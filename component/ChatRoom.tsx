@@ -100,6 +100,11 @@ export default function ChatRoom({
         { event: "INSERT", schema: "public", table: "Message" },
         handleInserts
       )
+      .on(
+        "postgres_changes",
+        { event: "DELETE", schema: "public", table: "Message" },
+        handleInserts
+      )
       .subscribe();
 
     return () => {
@@ -133,10 +138,12 @@ export default function ChatRoom({
       }
     }
 
-    chatListRef.current!.addEventListener("scroll", checkLast);
+    if (chatListRef.current)
+      chatListRef.current.addEventListener("scroll", checkLast);
 
     return () => {
-      chatListRef.current!.removeEventListener("scroll", checkLast);
+      if (chatListRef.current)
+        chatListRef.current!.removeEventListener("scroll", checkLast);
     };
   }, []);
 
