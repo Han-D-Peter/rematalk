@@ -1,3 +1,5 @@
+/** @format */
+
 "use client";
 
 import { Box, Typography } from "@mui/material";
@@ -8,12 +10,15 @@ export default function ChatItem({
   content,
   name,
   icon,
+  size,
 }: {
   isMine?: boolean;
   content: string;
   name: string;
   icon: string;
+  size: "sm" | "lg";
 }) {
+  const avatarSize = size === "sm" ? 24 : 72;
   return (
     <div>
       {isMine ? (
@@ -38,19 +43,28 @@ export default function ChatItem({
         </Box>
       ) : (
         <>
-          <Box sx={{ display: "flex", alignItems: "start", gap: "5px" }}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: size === "sm" ? "5px" : "20px",
+            }}
+          >
             <div>
               <Avatar
                 alt="Remy Sharp"
                 src={icon}
-                sx={{ width: 24, height: 24 }}
+                sx={{ width: avatarSize, height: avatarSize }}
               />
             </div>
-            <Typography fontWeight={700} sx={{ fontSize: "12px" }}>
+            <Typography
+              fontWeight={700}
+              sx={{ fontSize: size === "sm" ? "12px" : "36px" }}
+            >
               {name}
             </Typography>
           </Box>
-          <Box sx={{ marginLeft: "30px" }}>
+          <Box sx={{ marginLeft: size === "sm" ? "30px" : "80px" }}>
             <Box
               sx={{
                 background: "white",
@@ -59,7 +73,9 @@ export default function ChatItem({
                 borderRadius: "10px",
               }}
             >
-              <Typography>{content}</Typography>
+              <Typography sx={{ fontSize: size === "sm" ? "12px" : "70px" }}>
+                {content}
+              </Typography>
             </Box>
           </Box>
         </>

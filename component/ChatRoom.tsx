@@ -1,3 +1,5 @@
+/** @format */
+
 "use client";
 
 import { createClient, RealtimeChannel } from "@supabase/supabase-js";
@@ -72,8 +74,6 @@ export default function ChatRoom({
 
     if (data) setMessages(data);
   };
-
-  useEffect;
 
   const moveToLast = () => {
     if (chatListRef.current) {
@@ -165,6 +165,7 @@ export default function ChatRoom({
         {messages.map((msg, index) => {
           return (
             <ChatItem
+              size="sm"
               key={index}
               isMine={msg.uuid === uuid}
               content={msg.content}
