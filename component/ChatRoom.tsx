@@ -46,12 +46,31 @@ export default function ChatRoom({
   const onSubmit = async (event: FormEvent) => {
     const { data, error } = await supabase
       .from("Message")
-      .insert({ name, content: inputRef.current!.value, uuid });
-    // moveToLast();
+      .insert({ name, content: inputRef.current!.value, uuid })
+      .select();
+
     inputRef.current!.value = "";
     moveToLast();
     inputRef.current!.focus();
+
+    refreshAll();
   };
+
+  const refreshAll = async () => {
+    const { data } = await supabase.from("Message").select<
+      "*",
+      {
+        name: string;
+        content: string;
+        createdAt: string;
+        uuid: string;
+      }
+    >();
+
+    if (data) setMessages(data);
+  };
+
+  useEffect;
 
   const moveToLast = () => {
     if (chatListRef.current) {
@@ -60,6 +79,7 @@ export default function ChatRoom({
   };
 
   useEffect(() => {
+    refreshAll();
     moveToLast();
   }, []);
 
@@ -69,12 +89,7 @@ export default function ChatRoom({
 
   useEffect(() => {
     const handleInserts = (payload: any) => {
-      const { content, created_at, name, uuid } = payload.new;
-
-      setMessages((prev) => [
-        ...prev,
-        { content, createdAt: created_at, name, uuid },
-      ]);
+      refreshAll();
     };
 
     // Listen to inserts
@@ -134,79 +149,6 @@ export default function ChatRoom({
       }}
     >
       <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-        <ChatItem content={"hello"} name="peter" icon={`/icons/1.png`} />
-        <ChatItem
-          content={
-            "안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요"
-          }
-          name="재성"
-          icon={`/icons/2.png`}
-        />
-        <ChatItem
-          isMine={true}
-          content={"hello"}
-          name="peter"
-          icon={`/icons/1.png`}
-        />
-        <ChatItem content={"안녕하세요"} name="재성" icon={`/icons/2.png`} />
-        <ChatItem
-          isMine={true}
-          content={"hello"}
-          name="peter"
-          icon={`/icons/1.png`}
-        />
-        <ChatItem content={"안녕하세요"} name="재성" icon={`/icons/2.png`} />
-        <ChatItem
-          isMine={true}
-          content={"hello"}
-          name="peter"
-          icon={`/icons/1.png`}
-        />
-        <ChatItem content={"안녕하세요"} name="재성" icon={`/icons/2.png`} />
-        <ChatItem
-          isMine={true}
-          content={"hello"}
-          name="peter"
-          icon={`/icons/1.png`}
-        />
-        <ChatItem content={"안녕하세요"} name="재성" icon={`/icons/2.png`} />
-        <ChatItem content={"hello"} name="peter" icon={`/icons/1.png`} />
-        <ChatItem content={"안녕하세요"} name="재성" icon={`/icons/2.png`} />
-        <ChatItem content={"hello"} name="peter" icon={`/icons/1.png`} />
-        <ChatItem content={"안녕하세요"} name="재성" icon={`/icons/2.png`} />
-        <ChatItem
-          isMine={true}
-          content={"hello"}
-          name="peter"
-          icon={`/icons/1.png`}
-        />
-        <ChatItem content={"안녕하세요"} name="재성" icon={`/icons/2.png`} />
-        <ChatItem
-          isMine={true}
-          content={"hello"}
-          name="peter"
-          icon={`/icons/1.png`}
-        />
-        <ChatItem content={"안녕하세요"} name="재성" icon={`/icons/2.png`} />
-        <ChatItem content={"hello"} name="peter" icon={`/icons/1.png`} />
-        <ChatItem content={"안녕하세요"} name="재성" icon={`/icons/2.png`} />
-        <ChatItem content={"hello"} name="peter" icon={`/icons/1.png`} />
-        <ChatItem
-          isMine={true}
-          content={"안녕하세요"}
-          name="재성"
-          icon={`/icons/2.png`}
-        />
-        <ChatItem content={"hello"} name="peter" icon={`/icons/1.png`} />
-        <ChatItem
-          isMine={true}
-          content={"안녕하세요"}
-          name="재성"
-          icon={`/icons/2.png`}
-        />
-        <ChatItem content={"hello"} name="peter" icon={`/icons/1.png`} />
-        <ChatItem content={"안녕하세요"} name="재성" icon={`/icons/2.png`} />
-
         {messages.map((msg, index) => {
           return (
             <ChatItem
