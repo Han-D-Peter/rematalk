@@ -82,6 +82,7 @@ export default function ChatRoom({
   };
 
   useEffect(() => {
+    document.body.style.background = "rgb(105, 193, 222)";
     refreshAll();
     moveToLast();
   }, []);
@@ -156,6 +157,8 @@ export default function ChatRoom({
       sx={{
         height: "100vh",
         overflowY: "scroll",
+        background: "rgb(105, 193, 222)",
+        padding: "15px",
       }}
     >
       <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
