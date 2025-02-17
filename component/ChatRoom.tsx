@@ -53,7 +53,9 @@ export default function ChatRoom({
   };
 
   const moveToLast = () => {
-    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+    if (chatBox.current) {
+      chatBox.current.scrollIntoView({ behavior: "smooth", inline: "end" });
+    }
   };
 
   useEffect(() => {
