@@ -110,28 +110,68 @@ export default function ChatRoom({
           name="재성"
           icon={`/icons/2.png`}
         />
-        <ChatItem content={"hello"} name="peter" icon={`/icons/1.png`} />
+        <ChatItem
+          isMine={true}
+          content={"hello"}
+          name="peter"
+          icon={`/icons/1.png`}
+        />
+        <ChatItem content={"안녕하세요"} name="재성" icon={`/icons/2.png`} />
+        <ChatItem
+          isMine={true}
+          content={"hello"}
+          name="peter"
+          icon={`/icons/1.png`}
+        />
+        <ChatItem content={"안녕하세요"} name="재성" icon={`/icons/2.png`} />
+        <ChatItem
+          isMine={true}
+          content={"hello"}
+          name="peter"
+          icon={`/icons/1.png`}
+        />
+        <ChatItem content={"안녕하세요"} name="재성" icon={`/icons/2.png`} />
+        <ChatItem
+          isMine={true}
+          content={"hello"}
+          name="peter"
+          icon={`/icons/1.png`}
+        />
         <ChatItem content={"안녕하세요"} name="재성" icon={`/icons/2.png`} />
         <ChatItem content={"hello"} name="peter" icon={`/icons/1.png`} />
         <ChatItem content={"안녕하세요"} name="재성" icon={`/icons/2.png`} />
         <ChatItem content={"hello"} name="peter" icon={`/icons/1.png`} />
         <ChatItem content={"안녕하세요"} name="재성" icon={`/icons/2.png`} />
-        <ChatItem content={"hello"} name="peter" icon={`/icons/1.png`} />
+        <ChatItem
+          isMine={true}
+          content={"hello"}
+          name="peter"
+          icon={`/icons/1.png`}
+        />
+        <ChatItem content={"안녕하세요"} name="재성" icon={`/icons/2.png`} />
+        <ChatItem
+          isMine={true}
+          content={"hello"}
+          name="peter"
+          icon={`/icons/1.png`}
+        />
         <ChatItem content={"안녕하세요"} name="재성" icon={`/icons/2.png`} />
         <ChatItem content={"hello"} name="peter" icon={`/icons/1.png`} />
         <ChatItem content={"안녕하세요"} name="재성" icon={`/icons/2.png`} />
         <ChatItem content={"hello"} name="peter" icon={`/icons/1.png`} />
-        <ChatItem content={"안녕하세요"} name="재성" icon={`/icons/2.png`} />
+        <ChatItem
+          isMine={true}
+          content={"안녕하세요"}
+          name="재성"
+          icon={`/icons/2.png`}
+        />
         <ChatItem content={"hello"} name="peter" icon={`/icons/1.png`} />
-        <ChatItem content={"안녕하세요"} name="재성" icon={`/icons/2.png`} />
-        <ChatItem content={"hello"} name="peter" icon={`/icons/1.png`} />
-        <ChatItem content={"안녕하세요"} name="재성" icon={`/icons/2.png`} />
-        <ChatItem content={"hello"} name="peter" icon={`/icons/1.png`} />
-        <ChatItem content={"안녕하세요"} name="재성" icon={`/icons/2.png`} />
-        <ChatItem content={"hello"} name="peter" icon={`/icons/1.png`} />
-        <ChatItem content={"안녕하세요"} name="재성" icon={`/icons/2.png`} />
-        <ChatItem content={"hello"} name="peter" icon={`/icons/1.png`} />
-        <ChatItem content={"안녕하세요"} name="재성" icon={`/icons/2.png`} />
+        <ChatItem
+          isMine={true}
+          content={"안녕하세요"}
+          name="재성"
+          icon={`/icons/2.png`}
+        />
         <ChatItem content={"hello"} name="peter" icon={`/icons/1.png`} />
         <ChatItem content={"안녕하세요"} name="재성" icon={`/icons/2.png`} />
 
@@ -139,6 +179,7 @@ export default function ChatRoom({
           return (
             <ChatItem
               key={index}
+              isMine={msg.uuid === uuid}
               content={msg.content}
               name={msg.name}
               icon={`/icons/${iconNumber}.png`}
