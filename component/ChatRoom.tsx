@@ -22,8 +22,8 @@ export default function ChatRoom({
   iconNumber: number;
 }) {
   const chatBox = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const [message, setMessage] = useState("");
   const [messages, setMessages] = useState<
     {
       name: string;
@@ -39,15 +39,15 @@ export default function ChatRoom({
     const {
       target: { value },
     } = event;
-    setMessage(value);
+    if (inputRef.current) inputRef.current.value = value;
   };
 
   const onSubmit = async (event: FormEvent) => {
     const { data, error } = await supabase
       .from("Message")
-      .insert({ name, content: message, uuid });
+      .insert({ name, content: inputRef.current!.value, uuid });
     // moveToLast();
-    setMessage("");
+    inputRef.current!.value = "";
   };
 
   const moveToLast = () => {
@@ -221,7 +221,6 @@ export default function ChatRoom({
           }}
           multiline
           variant="standard"
-          value={message}
           onChange={onChange}
         />
         <Button
