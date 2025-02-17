@@ -44,8 +44,6 @@ export default function ChatRoom({
   };
 
   const onSubmit = async (event: FormEvent) => {
-    event.preventDefault();
-
     const { data, error } = await supabase
       .from("Message")
       .insert({ name, content: message, uuid });
@@ -217,27 +215,25 @@ export default function ChatRoom({
           background: "white",
         }}
       >
-        <form onSubmit={onSubmit}>
-          <TextField
-            inputRef={inputRef}
-            sx={{
-              padding: "0",
-              width: "calc(100% - 64px)",
-              border: "none",
-            }}
-            variant="standard"
-            value={message}
-            InputProps={{ style: { padding: "0", height: "35px" } }}
-            onChange={onChange}
-          />
-          <Button
-            type="submit"
-            sx={{ background: "rgb(55, 94, 211)" }}
-            variant="contained"
-          >
-            <SendIcon />
-          </Button>
-        </form>
+        <TextField
+          inputRef={inputRef}
+          sx={{
+            padding: "0",
+            width: "calc(100% - 64px)",
+            border: "none",
+          }}
+          variant="standard"
+          value={message}
+          InputProps={{ style: { padding: "0", height: "35px" } }}
+          onChange={onChange}
+        />
+        <Button
+          sx={{ background: "rgb(55, 94, 211)" }}
+          variant="contained"
+          onClick={onSubmit}
+        >
+          <SendIcon />
+        </Button>
       </Box>
     </Box>
   );
