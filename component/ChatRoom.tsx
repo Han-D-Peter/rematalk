@@ -6,6 +6,7 @@ import { css } from "@emotion/react";
 import ChatItem from "./ChatItem";
 import { Box, Button, IconButton, TextField } from "@mui/material";
 import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
+import SendIcon from "@mui/icons-material/Send";
 
 export const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -184,10 +185,10 @@ export default function ChatRoom({
           />
           <Button
             type="submit"
-            sx={{ background: "rgb(0, 204, 255)" }}
+            sx={{ background: "rgb(55, 94, 211)" }}
             variant="contained"
           >
-            전송
+            <SendIcon />
           </Button>
         </form>
       </Box>
