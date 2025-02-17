@@ -54,10 +54,18 @@ export default function ChatRoom({
   };
 
   const moveToLast = () => {
-    if (chatBox.current) {
-      chatBox.current.scrollIntoView({ behavior: "smooth", inline: "end" });
+    if (chatListRef.current) {
+      chatListRef.current.scrollTop = chatListRef.current.scrollHeight;
     }
   };
+
+  useEffect(() => {
+    moveToLast();
+  }, []);
+
+  useEffect(() => {
+    if (isLast) moveToLast();
+  }, [messages, isLast]);
 
   useEffect(() => {
     const handleInserts = (payload: any) => {
@@ -67,10 +75,6 @@ export default function ChatRoom({
         ...prev,
         { content, createdAt: created_at, name, uuid },
       ]);
-
-      // Scroll to the bottom
-      console.log(isLast);
-      if (isLast) moveToLast();
     };
 
     // Listen to inserts
@@ -104,33 +108,32 @@ export default function ChatRoom({
 
   useEffect(() => {
     function checkLast() {
-      console.log("scroll");
       if (
-        window.scrollY + window.innerHeight ===
-        document.documentElement.scrollHeight
+        chatListRef.current!.scrollTop + chatListRef.current!.clientHeight ===
+        chatListRef.current!.scrollHeight
       ) {
-        console.log("last");
+        setIsLast(true);
       } else {
-        console.log("middle");
+        setIsLast(false);
       }
     }
 
     chatListRef.current!.addEventListener("scroll", checkLast);
 
-    return chatListRef.current!.removeEventListener("scroll", checkLast);
+    return () => {
+      chatListRef.current!.removeEventListener("scroll", checkLast);
+    };
   }, []);
 
   return (
     <Box
+      ref={chatListRef}
       sx={{
         height: "100vh",
         overflowY: "scroll",
       }}
     >
-      <Box
-        ref={chatListRef}
-        sx={{ display: "flex", flexDirection: "column", gap: "10px" }}
-      >
+      <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
         <ChatItem content={"hello"} name="peter" icon={`/icons/1.png`} />
         <ChatItem
           content={
@@ -215,9 +218,9 @@ export default function ChatRoom({
             />
           );
         })}
+
+        <Box ref={chatBox} sx={{ height: "50px" }}></Box>
       </Box>
-      <Box sx={{ height: "50px" }}></Box>
-      <Box ref={chatBox} sx={{ height: "50px" }}></Box>
       {!isLast && (
         <Box
           sx={{
