@@ -163,13 +163,23 @@ export default function ChatRoom({
             background: "rgb(158, 129, 255)",
             padding: "10px 10px 30px 10px",
             borderRadius: "10px",
+            display: "flex",
+            flexDirection: "column",
+            gap: "10px",
           }}
         >
           <Typography fontWeight={800}>공지</Typography>
           <ChatItem
             size="sm"
             isMine={false}
-            content={`안녕하세요. 예비 중 1과 예비 고 1 친구들의 고민에 부평중고등부 선배들이 지혜를 더해주는 토크 콘서트! '틴스톡' 채팅방입니다.\n 꼭 '학년과실명' 으로 들어와주세요.`}
+            content={`안녕하세요. 예비 중 1과 예비 고 1 친구들의 고민에 부평중고등부 선배들이 지혜를 더해주는 토크 콘서트! '틴스톡' 채팅방입니다.`}
+            name={"부평중고등부 방장"}
+            icon={`/icons/59.png`}
+          />
+          <ChatItem
+            size="sm"
+            isMine={false}
+            content={`꼭 '학년과실명' 으로 들어와주세요.`}
             name={"부평중고등부 방장"}
             icon={`/icons/59.png`}
           />
@@ -185,9 +195,7 @@ export default function ChatRoom({
           <ChatItem
             size="sm"
             isMine={false}
-            content={
-              "선생님이 소개해주시는 사연에 맞는 나의 경험들을 알려주세요!"
-            }
+            content={"선생님이 소개해주시는 사연에 나의 경험들을 올려주세요!"}
             name={"부평중고등부 방장"}
             icon={`/icons/59.png`}
           />
