@@ -19,6 +19,7 @@ export default function Entrance() {
   }
 
   useEffect(() => {
+    document.body.style.background = "white";
     setUuid(v4());
     setIconNumber(Math.floor(Math.random() * 62) + 1);
   }, []);
