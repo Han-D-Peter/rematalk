@@ -19,11 +19,11 @@ export default function ChatItem({
   size: "sm" | "lg";
 }) {
   const adaptiveSize = {
-    avatarSize: size === "sm" ? 24 : 72,
+    avatarSize: size === "sm" ? 30 : 72,
     avatarGap: size === "sm" ? "5px" : "20px",
-    nameFontSize: size === "sm" ? "12px" : "36px",
+    nameFontSize: size === "sm" ? "17px" : "36px",
     contentLeftGap: size === "sm" ? "30px" : "80px",
-    contentFontSize: size === "sm" ? "12px" : "40px",
+    contentFontSize: size === "sm" ? "19px" : "40px",
     contentPadding: size === "sm" ? "4px 7px" : "6px 17px",
   };
   return (
