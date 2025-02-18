@@ -3,33 +3,28 @@
 "use client";
 
 import { Box } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { supabase } from "./ChatRoom";
 import ChatItem from "./ChatItem";
+import DisplayedChat from "./DisplayedChat";
+
+export type Message = {
+  id: number;
+  name: string;
+  content: string;
+  createdAt: string;
+  uuid: string;
+  icon: number;
+  selected: boolean;
+};
 
 export default function StudioPage() {
-  const [messages, setMessages] = useState<
-    {
-      name: string;
-      content: string;
-      createdAt: string;
-      uuid: string;
-      icon: number;
-    }[]
-  >([]);
+  const [messages, setMessages] = useState<Message[]>([]);
+
   const refreshAll = async () => {
     const { data } = await supabase
       .from("Message")
-      .select<
-        "*",
-        {
-          name: string;
-          content: string;
-          createdAt: string;
-          uuid: string;
-          icon: number;
-        }
-      >()
+      .select<"*", Message>()
       .order("created_at", { ascending: false });
 
     if (data) setMessages(data);
@@ -44,12 +39,7 @@ export default function StudioPage() {
       .channel("Message")
       .on(
         "postgres_changes",
-        { event: "INSERT", schema: "public", table: "Message" },
-        handleInserts
-      )
-      .on(
-        "postgres_changes",
-        { event: "DELETE", schema: "public", table: "Message" },
+        { event: "*", schema: "public", table: "Message" },
         handleInserts
       )
       .subscribe();
@@ -61,25 +51,49 @@ export default function StudioPage() {
 
   useEffect(() => {
     refreshAll();
+    document.body.style.background = "rgb(64, 237, 9)";
   }, []);
 
-  console.log("messages", messages);
+  const selectedMessage = useMemo(() => {
+    return messages.find((msg) => msg.selected);
+  }, [messages]);
+
   return (
     <Box sx={{ width: "100vw", height: "100vh", display: "flex" }}>
       <Box
         sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "end",
           zIndex: "100",
           width: "65%",
           height: "100%",
         }}
-      ></Box>
+      >
+        {selectedMessage && (
+          <Box
+            sx={{
+              marginBottom: "70px",
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <DisplayedChat
+              name={selectedMessage.name}
+              content={selectedMessage.content}
+              icon={`/icons/${selectedMessage.icon}.png`}
+            />
+          </Box>
+        )}
+      </Box>
       <Box
         sx={{
           display: "flex",
           flexDirection: "column",
           gap: "50px",
           zIndex: "100",
-          width: "35%",
+          maxWidth: "35%",
           maxHeight: "100%",
           overflowY: "scroll",
           padding: "30px",
@@ -95,19 +109,6 @@ export default function StudioPage() {
           />
         ))}
       </Box>
-      {/* <img
-        src="/sample.png"
-        alt="back wall"
-        style={{
-          zIndex: "1",
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          position: "absolute",
-          top: 0,
-          left: 0,
-        }}
-      /> */}
     </Box>
   );
 }

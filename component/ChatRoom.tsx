@@ -9,6 +9,7 @@ import ChatItem from "./ChatItem";
 import { Box, Button, IconButton, TextField } from "@mui/material";
 import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
 import SendIcon from "@mui/icons-material/Send";
+import { Message } from "./Studio";
 
 export const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -27,15 +28,7 @@ export default function ChatRoom({
   const chatBox = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const [messages, setMessages] = useState<
-    {
-      name: string;
-      content: string;
-      createdAt: string;
-      uuid: string;
-      icon: number;
-    }[]
-  >([]);
+  const [messages, setMessages] = useState<Message[]>([]);
 
   const [isLast, setIsLast] = useState(true);
 
@@ -68,19 +61,16 @@ export default function ChatRoom({
   const refreshAll = async () => {
     const { data } = await supabase
       .from("Message")
-      .select<
-        "*",
-        {
-          name: string;
-          content: string;
-          createdAt: string;
-          uuid: string;
-          icon: number;
-        }
-      >()
+      .select<"*", Message>()
       .order("created_at", { ascending: true });
 
-    if (data) setMessages(data);
+    if (data) {
+      setMessages(data);
+
+      if (data.find((item) => item.selected && item.uuid === uuid)) {
+        alert("내 메세지를 보고 있어요!");
+      }
+    }
   };
 
   const moveToLast = () => {
@@ -109,12 +99,7 @@ export default function ChatRoom({
       .channel("Message")
       .on(
         "postgres_changes",
-        { event: "INSERT", schema: "public", table: "Message" },
-        handleInserts
-      )
-      .on(
-        "postgres_changes",
-        { event: "DELETE", schema: "public", table: "Message" },
+        { event: "*", schema: "public", table: "Message" },
         handleInserts
       )
       .subscribe();
@@ -165,7 +150,7 @@ export default function ChatRoom({
       sx={{
         height: "100vh",
         overflowY: "scroll",
-        background: "rgb(105, 193, 222)",
+        background: "rgb(150, 213, 233)",
         padding: "15px",
       }}
     >
@@ -173,8 +158,8 @@ export default function ChatRoom({
         {messages.map((msg, index) => {
           return (
             <ChatItem
-              size="sm"
               key={index}
+              size="sm"
               isMine={msg.uuid === uuid}
               content={msg.content}
               name={msg.name}

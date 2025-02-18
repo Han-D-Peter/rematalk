@@ -19,15 +19,15 @@ export default function ChatItem({
   size: "sm" | "lg";
 }) {
   const adaptiveSize = {
-    avatarSize: size === "sm" ? 24 : 72,
-    avatarGap: size === "sm" ? "5px" : "20px",
-    nameFontSize: size === "sm" ? "12px" : "36px",
+    avatarSize: size === "sm" ? 24 : 65,
+    avatarGap: size === "sm" ? "5px" : "17px",
+    nameFontSize: size === "sm" ? "12px" : "33px",
     contentLeftGap: size === "sm" ? "30px" : "80px",
-    contentFontSize: size === "sm" ? "12px" : "40px",
+    contentFontSize: size === "sm" ? "12px" : "30px",
     contentPadding: size === "sm" ? "4px 7px" : "6px 17px",
   };
   return (
-    <div>
+    <Box sx={{ width: "100%" }}>
       {isMine ? (
         <Box
           sx={{
@@ -69,7 +69,10 @@ export default function ChatItem({
             </div>
             <Typography
               fontWeight={700}
-              sx={{ fontSize: adaptiveSize.nameFontSize }}
+              sx={{
+                fontSize: adaptiveSize.nameFontSize,
+                WebkitTextStroke: size === "sm" ? "0px" : "1px white",
+              }}
             >
               {name}
             </Typography>
@@ -83,13 +86,21 @@ export default function ChatItem({
                 borderRadius: "10px",
               }}
             >
-              <Typography sx={{ fontSize: adaptiveSize.contentFontSize }}>
+              <Typography
+                sx={{
+                  fontSize: adaptiveSize.contentFontSize,
+                  overflow: "hidden", // 추가
+                  textOverflow: "ellipsis", // 추가
+                  whiteSpace: "normal", // 추가
+                  wordBreak: "break-all", // 추가
+                }}
+              >
                 {content}
               </Typography>
             </Box>
           </Box>
         </>
       )}
-    </div>
+    </Box>
   );
 }
