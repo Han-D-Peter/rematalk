@@ -97,6 +97,7 @@ export default function StudioPage() {
           maxHeight: "100%",
           overflowY: "scroll",
           padding: "30px",
+          background: "rgba(255, 255, 255, 0.79)",
         }}
       >
         {messages.map((msg, index) => (
