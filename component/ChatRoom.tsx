@@ -6,7 +6,7 @@ import { createClient, RealtimeChannel } from "@supabase/supabase-js";
 import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
 import { css } from "@emotion/react";
 import ChatItem from "./ChatItem";
-import { Box, Button, IconButton, TextField } from "@mui/material";
+import { Box, Button, IconButton, TextField, Typography } from "@mui/material";
 import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
 import SendIcon from "@mui/icons-material/Send";
 import { Message } from "./Studio";
@@ -155,6 +155,40 @@ export default function ChatRoom({
       }}
     >
       <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+        <Box
+          sx={{
+            background: "rgb(158, 129, 255)",
+            padding: "10px 10px 30px 10px",
+            borderRadius: "10px",
+          }}
+        >
+          <Typography fontWeight={800}>공지</Typography>
+          <ChatItem
+            size="sm"
+            isMine={false}
+            content={`안녕하세요. 예비 중 1과 예비 고 1 친구들의 고민에 부평중고등부 선배들이 지혜를 더해주는 토크 콘서트! '틴스톡' 채팅방입니다.\n 꼭 '학년과실명' 으로 들어와주세요.`}
+            name={"부평중고등부 방장"}
+            icon={`/icons/59.png`}
+          />
+          <ChatItem
+            size="sm"
+            isMine={false}
+            content={
+              "'고3-베드로' 처럼 학년과 실명으로 해주셔야 선물을 드릴 수 있습니다."
+            }
+            name={"부평중고등부 방장"}
+            icon={`/icons/59.png`}
+          />
+          <ChatItem
+            size="sm"
+            isMine={false}
+            content={
+              "선생님이 소개해주시는 사연에 맞는 나의 경험들을 알려주세요!"
+            }
+            name={"부평중고등부 방장"}
+            icon={`/icons/59.png`}
+          />
+        </Box>
         {messages.map((msg, index) => {
           return (
             <ChatItem
