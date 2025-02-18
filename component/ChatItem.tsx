@@ -18,7 +18,13 @@ export default function ChatItem({
   icon: string;
   size: "sm" | "lg";
 }) {
-  const avatarSize = size === "sm" ? 24 : 72;
+  const adaptiveSize = {
+    avatarSize: size === "sm" ? 24 : 72,
+    avatarGap: size === "sm" ? "5px" : "20px",
+    nameFontSize: size === "sm" ? "12px" : "36px",
+    contentLeftGap: size === "sm" ? "30px" : "80px",
+    contentFontSize: size === "sm" ? "12px" : "50px",
+  };
   return (
     <div>
       {isMine ? (
@@ -47,24 +53,27 @@ export default function ChatItem({
             sx={{
               display: "flex",
               alignItems: "center",
-              gap: size === "sm" ? "5px" : "20px",
+              gap: adaptiveSize.avatarGap,
             }}
           >
             <div>
               <Avatar
                 alt="Remy Sharp"
                 src={icon}
-                sx={{ width: avatarSize, height: avatarSize }}
+                sx={{
+                  width: adaptiveSize.avatarSize,
+                  height: adaptiveSize.avatarSize,
+                }}
               />
             </div>
             <Typography
               fontWeight={700}
-              sx={{ fontSize: size === "sm" ? "12px" : "36px" }}
+              sx={{ fontSize: adaptiveSize.nameFontSize }}
             >
               {name}
             </Typography>
           </Box>
-          <Box sx={{ marginLeft: size === "sm" ? "30px" : "80px" }}>
+          <Box sx={{ marginLeft: adaptiveSize.contentLeftGap }}>
             <Box
               sx={{
                 background: "white",
@@ -73,7 +82,7 @@ export default function ChatItem({
                 borderRadius: "10px",
               }}
             >
-              <Typography sx={{ fontSize: size === "sm" ? "12px" : "70px" }}>
+              <Typography sx={{ fontSize: adaptiveSize.contentFontSize }}>
                 {content}
               </Typography>
             </Box>

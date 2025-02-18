@@ -83,8 +83,9 @@ export default function StudioPage() {
           padding: "30px",
         }}
       >
-        {messages.map((msg) => (
+        {messages.map((msg, index) => (
           <ChatItem
+            key={index}
             size={"lg"}
             name={msg.name}
             content={msg.content}

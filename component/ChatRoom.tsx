@@ -46,9 +46,15 @@ export default function ChatRoom({
   };
 
   const onSubmit = async (event: FormEvent) => {
+    if (!inputRef.current?.value) return;
     const { data, error } = await supabase
       .from("Message")
-      .insert({ name, content: inputRef.current!.value, uuid })
+      .insert({
+        name,
+        content: inputRef.current!.value,
+        uuid,
+        icon: iconNumber,
+      })
       .select();
 
     inputRef.current!.value = "";
