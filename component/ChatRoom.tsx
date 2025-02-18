@@ -33,6 +33,7 @@ export default function ChatRoom({
       content: string;
       createdAt: string;
       uuid: string;
+      icon: number;
     }[]
   >([]);
 
@@ -74,6 +75,7 @@ export default function ChatRoom({
           content: string;
           createdAt: string;
           uuid: string;
+          icon: number;
         }
       >()
       .order("created_at", { ascending: true });
@@ -176,7 +178,7 @@ export default function ChatRoom({
               isMine={msg.uuid === uuid}
               content={msg.content}
               name={msg.name}
-              icon={`/icons/${iconNumber}.png`}
+              icon={`/icons/${msg.icon}.png`}
             />
           );
         })}

@@ -14,6 +14,7 @@ export default function StudioPage() {
       content: string;
       createdAt: string;
       uuid: string;
+      icon: number;
     }[]
   >([]);
   const refreshAll = async () => {
@@ -26,6 +27,7 @@ export default function StudioPage() {
           content: string;
           createdAt: string;
           uuid: string;
+          icon: number;
         }
       >()
       .order("created_at", { ascending: false });
@@ -89,7 +91,7 @@ export default function StudioPage() {
             size={"lg"}
             name={msg.name}
             content={msg.content}
-            icon={`/icons/${1}.png`}
+            icon={`/icons/${msg.icon}.png`}
           />
         ))}
       </Box>

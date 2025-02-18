@@ -23,7 +23,8 @@ export default function ChatItem({
     avatarGap: size === "sm" ? "5px" : "20px",
     nameFontSize: size === "sm" ? "12px" : "36px",
     contentLeftGap: size === "sm" ? "30px" : "80px",
-    contentFontSize: size === "sm" ? "12px" : "50px",
+    contentFontSize: size === "sm" ? "12px" : "40px",
+    contentPadding: size === "sm" ? "4px 7px" : "6px 17px",
   };
   return (
     <div>
@@ -78,7 +79,7 @@ export default function ChatItem({
               sx={{
                 background: "white",
                 width: "fit-content",
-                padding: "4px 7px",
+                padding: adaptiveSize.contentPadding,
                 borderRadius: "10px",
               }}
             >
