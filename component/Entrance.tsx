@@ -1,3 +1,5 @@
+/** @format */
+
 "use client";
 
 import { FormEvent, useEffect, useRef, useState } from "react";
@@ -19,7 +21,6 @@ export default function Entrance() {
   }
 
   useEffect(() => {
-    document.body.style.background = "white";
     setUuid(v4());
     setIconNumber(Math.floor(Math.random() * 62) + 1);
   }, []);
@@ -33,13 +34,26 @@ export default function Entrance() {
           sx={{
             width: "100vw",
             height: "100vh",
-            background: "white",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            flexDirection: "column",
           }}
         >
           <Box>
+            <img src="/logo.png" width={270} />
+          </Box>
+          <Box
+            sx={{
+              width: "70%",
+              height: "7%",
+              background: "white",
+              borderRadius: "10px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
             <form onSubmit={onSubmit}>
               <Box
                 sx={{

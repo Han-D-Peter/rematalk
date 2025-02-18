@@ -153,14 +153,14 @@ export default function ChatRoom({
       sx={{
         height: "100vh",
         overflowY: "scroll",
-        background: "#B4C8D9",
+
         padding: "15px",
       }}
     >
       <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
         <Box
           sx={{
-            background: "rgb(158, 129, 255)",
+            background: "rgb(252, 252, 252)",
             padding: "10px 10px 30px 10px",
             borderRadius: "10px",
             display: "flex",

@@ -21,9 +21,9 @@ export default function ChatItem({
   const adaptiveSize = {
     avatarSize: size === "sm" ? 24 : 65,
     avatarGap: size === "sm" ? "5px" : "17px",
-    nameFontSize: size === "sm" ? "12px" : "33px",
+    nameFontSize: size === "sm" ? "17px" : "33px",
     contentLeftGap: size === "sm" ? "30px" : "80px",
-    contentFontSize: size === "sm" ? "12px" : "30px",
+    contentFontSize: size === "sm" ? "17px" : "30px",
     contentPadding: size === "sm" ? "4px 7px" : "6px 17px",
   };
   return (
