@@ -75,7 +75,10 @@ export default function ChatRoom({
 
   const moveToLast = () => {
     if (chatListRef.current) {
-      chatListRef.current.scrollTop = chatListRef.current.scrollHeight;
+      chatListRef.current.scrollTo({
+        top: chatListRef.current.scrollHeight,
+        behavior: "smooth", // 스무스한 스크롤 효과 추가
+      });
     }
   };
 
