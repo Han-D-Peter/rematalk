@@ -150,7 +150,7 @@ export default function ChatRoom({
       sx={{
         height: "100vh",
         overflowY: "scroll",
-        background: "rgb(150, 213, 233)",
+        background: "#B4C8D9",
         padding: "15px",
       }}
     >
