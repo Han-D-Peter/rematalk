@@ -151,7 +151,7 @@ export default function ChatRoom({
     <Box
       ref={chatListRef}
       sx={{
-        height: "100dvh",
+        height: "100svh",
         overflowY: "scroll",
 
         padding: "15px",

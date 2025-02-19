@@ -33,7 +33,7 @@ export default function Entrance() {
         <Box
           sx={{
             width: "100vw",
-            height: "100dvh",
+            height: "100svh",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
