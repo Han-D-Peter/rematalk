@@ -40,10 +40,7 @@ export default function RootLayout({
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
         />
       </head>
-      <body
-        className={roboto.variable}
-        style={{ margin: 0, height: "100%", overflow: "hidden" }}
-      >
+      <body className={roboto.variable} style={{ margin: 0 }}>
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>{children}</ThemeProvider>
         </AppRouterCacheProvider>

@@ -84,7 +84,8 @@ export default function TeachersRoom() {
           flexDirection: "column",
           gap: "10px",
           padding: "20px",
-          height: "100svh",
+          paddingBottom: "100px",
+          height: "100vh",
           overflowY: "scroll",
         }}
       >
@@ -113,7 +114,9 @@ export default function TeachersRoom() {
             </Box>
           );
         })}
-
+        <Box sx={{ width: "100%" }}>
+          <Box sx={{ height: "180px" }}></Box>
+        </Box>
         <Box
           sx={{
             position: "fixed",
@@ -146,7 +149,6 @@ export default function TeachersRoom() {
           </Box>
         </Box>
       </Box>
-      <Box sx={{ height: "100px" }}></Box>
     </>
   );
 }
