@@ -93,6 +93,7 @@ export default function StudioPage() {
           flexDirection: "column",
           gap: "50px",
           zIndex: "100",
+          width: "35%",
           maxWidth: "35%",
           maxHeight: "100%",
           overflowY: "scroll",

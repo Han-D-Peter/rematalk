@@ -1,3 +1,5 @@
+/** @format */
+
 import { Avatar, Box, Typography } from "@mui/material";
 
 export default function DisplayedChat({
@@ -46,7 +48,7 @@ export default function DisplayedChat({
         >
           <Typography
             sx={{
-              fontSize: "30px",
+              fontSize: "45px",
               overflow: "hidden", // 추가
               textOverflow: "ellipsis", // 추가
               whiteSpace: "normal", // 추가
