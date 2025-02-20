@@ -19,7 +19,7 @@ export default function Entrance() {
   const searchParams = useSearchParams();
 
   const inputRef = useRef<HTMLInputElement>(null);
-  useInputScroll(inputRef);
+  useInputScroll(inputRef.current);
 
   function onSubmit(event: FormEvent) {
     event.preventDefault();
