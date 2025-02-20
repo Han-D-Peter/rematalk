@@ -34,6 +34,7 @@ export default function Entrance() {
           sx={{
             width: "100vw",
             height: "100svh",
+            overflowY: "auto",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",

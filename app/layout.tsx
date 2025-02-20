@@ -23,14 +23,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      style={{
+        height: "100vh",
+        width: "100vw",
+        backgroundImage: "url('/background.png')",
+        backgroundSize: "cover", // 추가된 부분
+        backgroundPosition: "center", // 추가된 부분
+        overflow: "hidden", // 추가된 부분
+      }}
+    >
       <head>
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
         />
       </head>
-      <body className={roboto.variable} style={{ margin: "0" }}>
+      <body
+        className={roboto.variable}
+        style={{ margin: 0, height: "100%", overflow: "hidden" }}
+      >
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>{children}</ThemeProvider>
         </AppRouterCacheProvider>
