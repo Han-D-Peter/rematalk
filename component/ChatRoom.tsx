@@ -70,7 +70,7 @@ export default function ChatRoom({
       setMessages(data);
 
       if (data.find((item) => item.selected && item.uuid === uuid)) {
-        alert("내 메세지를 보고 있어요!");
+        alert("앞을 보세요! 메세지가 선택되려나 봐요!");
       }
     }
   };
