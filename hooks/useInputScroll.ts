@@ -9,7 +9,6 @@ const useInputScroll = (input: HTMLInputElement | null) => {
   }, [input]);
 
   const handleScroll = (e: { target: any }) => {
-    console.log("input", input);
     if (!input) return;
     if (document.activeElement == input || input.contains(e.target)) {
       (document.activeElement as HTMLElement).blur();

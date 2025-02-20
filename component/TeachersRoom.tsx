@@ -84,6 +84,8 @@ export default function TeachersRoom() {
           flexDirection: "column",
           gap: "10px",
           padding: "20px",
+          height: "100svh",
+          overflowY: "scroll",
         }}
       >
         {messages.map((msg, index) => {
