@@ -87,10 +87,9 @@ export default function Entrance() {
           </Box>
           <Box
             sx={{
-              width: "70%",
-              height: "7%",
+              padding: "7px",
               background: "white",
-              borderRadius: "10px",
+              borderRadius: "9px",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
