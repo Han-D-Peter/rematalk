@@ -83,7 +83,7 @@ export default function ChatRoom({
   };
 
   useEffect(() => {
-    document.body.style.background = "#B4C8D9";
+    // document.body.style.background = "#B4C8D9";
     refreshAll();
     moveToLast();
   }, []);

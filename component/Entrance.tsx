@@ -7,22 +7,63 @@ import { v4 } from "uuid";
 import ChatRoom from "./ChatRoom";
 import { Box, Button, TextField } from "@mui/material";
 
+import { useRouter, useSearchParams } from "next/navigation";
+import useInputScroll from "@/hooks/useInputScroll";
+
 export default function Entrance() {
   const [uuid, setUuid] = useState<string>("");
   const [name, setName] = useState<string | null>(null);
   const [iconNumber, setIconNumber] = useState<number>(1);
 
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
   const inputRef = useRef<HTMLInputElement>(null);
+  useInputScroll(inputRef);
 
   function onSubmit(event: FormEvent) {
     event.preventDefault();
 
     setName(inputRef.current!.value);
+    if (uuid && iconNumber) {
+      router.push(
+        `?name=${inputRef.current!.value}&uuid=${uuid}&icon=${iconNumber}`
+      );
+    }
   }
 
   useEffect(() => {
-    setUuid(v4());
-    setIconNumber(Math.floor(Math.random() * 62) + 1);
+    const name = searchParams.get("name");
+    const uuid = searchParams.get("uuid");
+    const icon = searchParams.get("icon");
+
+    if (name) {
+      setName(name);
+    }
+
+    if (uuid) {
+      setUuid(uuid);
+    } else {
+      setUuid(v4());
+    }
+
+    if (icon) {
+      setIconNumber(Number(icon));
+    } else {
+      setIconNumber(Math.floor(Math.random() * 62) + 1);
+    }
+  }, []);
+
+  useEffect(() => {
+    const handlePopState = () => {
+      setName(null);
+    };
+
+    window.addEventListener("popstate", handlePopState);
+
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
   }, []);
 
   return (
