@@ -6,9 +6,10 @@ const useInputScroll = (input: HTMLInputElement | null) => {
     return () => {
       window.removeEventListener("touchmove", handleScroll);
     };
-  }, []);
+  }, [input]);
 
   const handleScroll = (e: { target: any }) => {
+    console.log("input", input);
     if (!input) return;
     if (document.activeElement == input || input.contains(e.target)) {
       (document.activeElement as HTMLElement).blur();
