@@ -10,6 +10,7 @@ import { Box, Button, IconButton, TextField, Typography } from "@mui/material";
 import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
 import SendIcon from "@mui/icons-material/Send";
 import { Message } from "./Studio";
+import useInputScroll from "@/hooks/useInputScroll";
 
 export const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -27,6 +28,7 @@ export default function ChatRoom({
   const chatListRef = useRef<HTMLDivElement>(null);
   const chatBox = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  useInputScroll(inputRef.current);
 
   const [messages, setMessages] = useState<Message[]>([]);
 
