@@ -3,6 +3,7 @@
 import Entrance from "@/component/Entrance";
 import { Box } from "@mui/material";
 import { createClient } from "@supabase/supabase-js";
+import { Suspense } from "react";
 
 export default async function Home() {
   return (
@@ -14,7 +15,9 @@ export default async function Home() {
         overflowY: "auto",
       }}
     >
-      <Entrance />
+      <Suspense fallback={<div>로딩 중...</div>}>
+        <Entrance />
+      </Suspense>
     </Box>
   );
 }

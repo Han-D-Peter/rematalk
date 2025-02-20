@@ -2,7 +2,7 @@
 
 "use client";
 
-import { FormEvent, useEffect, useRef, useState } from "react";
+import { FormEvent, Suspense, useEffect, useRef, useState } from "react";
 import { v4 } from "uuid";
 import ChatRoom from "./ChatRoom";
 import { Box, Button, TextField } from "@mui/material";
