@@ -5,7 +5,7 @@
 import { FormEvent, Suspense, useEffect, useRef, useState } from "react";
 import { v4 } from "uuid";
 import ChatRoom from "./ChatRoom";
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
 
 import { useRouter, useSearchParams } from "next/navigation";
 import useInputScroll from "@/hooks/useInputScroll";
@@ -121,6 +121,13 @@ export default function Entrance() {
                 </Box>
               </Box>
             </form>
+          </Box>
+          <Box>
+            <Box sx={{ marginTop: "5px" }}>
+              <Typography fontWeight={500} fontSize={10}>
+                Powered by 레마 방송팀
+              </Typography>
+            </Box>
           </Box>
         </Box>
       )}
