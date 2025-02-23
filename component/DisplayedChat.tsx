@@ -31,8 +31,8 @@ export default function DisplayedChat({
           />
         </div>
         <Typography
-          fontWeight={700}
-          sx={{ fontSize: "34px", WebkitTextStroke: "1px white" }}
+          fontWeight={900}
+          sx={{ fontSize: "45px", WebkitTextStroke: "3px white" }}
         >
           {name}
         </Typography>
