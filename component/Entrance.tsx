@@ -107,7 +107,7 @@ export default function Entrance() {
                   <TextField
                     inputRef={inputRef}
                     size="small"
-                    placeholder="별명이 뭐예요?"
+                    placeholder="'고3-베드로' 처럼 작성해줘요~"
                   />
                 </Box>
                 <Box>
