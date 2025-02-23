@@ -105,9 +105,14 @@ export default function Entrance() {
               >
                 <Box>
                   <TextField
+                    inputProps={{
+                      style: {
+                        fontSize: "10px",
+                      },
+                    }}
                     inputRef={inputRef}
                     size="small"
-                    placeholder="'고3-베드로'와 같이 작성해줘요~"
+                    placeholder="'고3-베드로'처럼 작성해줘요~"
                   />
                 </Box>
                 <Box>
