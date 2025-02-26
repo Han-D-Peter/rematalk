@@ -107,6 +107,7 @@ export default function Entrance() {
                   <TextField
                     inputProps={{
                       style: {
+                        height: "23px",
                         fontSize: "10px",
                       },
                     }}
