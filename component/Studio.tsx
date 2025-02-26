@@ -7,6 +7,7 @@ import { useEffect, useMemo, useState } from "react";
 import { supabase } from "./ChatRoom";
 import ChatItem from "./ChatItem";
 import DisplayedChat from "./DisplayedChat";
+import ChatRoomQR from "./ChatRoomQR";
 
 export type Message = {
   id: number;
@@ -59,7 +60,25 @@ export default function StudioPage() {
   }, [messages]);
 
   return (
-    <Box sx={{ width: "100vw", height: "100vh", display: "flex" }}>
+    <Box
+      sx={{
+        position: "relative",
+        width: "100vw",
+        height: "100vh",
+        display: "flex",
+      }}
+    >
+      <Box
+        sx={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100px",
+          height: "100px",
+        }}
+      >
+        <ChatRoomQR />
+      </Box>
       <Box
         sx={{
           display: "flex",
